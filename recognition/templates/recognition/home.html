@@ -1,0 +1,154 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Absensi Wajah SMPN BandarKedungMulyo</title>
+
+    <style>
+        body {
+            background-color: #000000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+        }
+        a, a:focus, a:active, a:hover, a:visited {
+        outline: none !important; /* Hilangkan garis biru */
+        text-decoration: none !important; /* Hilangkan underline */
+        color: inherit; /* Pastikan warna sama */
+        }
+
+        .container {
+            margin-top: 3em;
+            padding: 2em;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.85);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .menu-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 10px;
+            padding: 1.5em;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .menu-icon {
+            font-size: 4rem;
+            color: #ffc107;
+        }
+
+        h4 {
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        .logosmpn {
+        background: #ffffff; /* Warna biru lebih tua */
+        width: 120px;
+        height: 120px;
+        line-height: 120px;
+        border-radius: 50%;
+        margin: 0 auto;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+      }
+        body {
+            overflow: hidden; /* Menghilangkan scroll horizontal dan vertikal */
+        }
+    </style>
+</head>
+
+<body>
+        <div class="container text-center">
+        <div class="header">
+            <h1> 
+                Absensi Kehadiran Guru Dan Karyawan Berbasis Wajah
+            </h1>
+          </div>
+        <div class="row mt-5">
+            <!-- Mark Attendance In -->
+            <div class="col-md-4 mb-4">
+                <a href="{% url 'mark-your-attendance' %}" class="text-decoration-none text-light">
+                    <div class="menu-card">
+                        <i class="bi bi-person-check-fill menu-icon"></i>
+                        <h4>Absen Masuk</h4>
+                    </div>
+                   
+                </a>
+            </div>
+            <!-- Mark Attendance Out -->
+            <div class="col-md-4 mb-4">
+                <a href="{% url 'mark-your-attendance-out' %}" id="absen-pulang-btn" class="text-decoration-none text-light">
+                    <div class="menu-card">
+                        <i class="bi bi-person-x-fill menu-icon"></i>
+                        <h4 id="absen-pulang-text">Absen Pulang</h4> <!-- Teks tombol -->
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Login -->
+            <div class="col-md-4 mb-4">
+                <a href="{% url 'login' %}" class="text-decoration-none text-light">
+                    <div class="menu-card">
+                        <i class="bi bi-box-arrow-in-right menu-icon"></i>
+                        <h4>Masuk</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% if error_message %}
+    <div class="alert alert-warning" style="background-color: #ffc107;">
+        <h1>hhhhhhhhhhhhhhhhhhhhhhh</h1>
+        {{ error_message }}
+    </div>
+    {% endif %}
+    <!-- Pastikan script ada di bawah HTML -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var currentTime = new Date();
+            var currentHour = currentTime.getHours(); // Mendapatkan jam saat ini
+            var currentMinute = currentTime.getMinutes(); // Mendapatkan menit saat ini
+            var absenPulangBtn = document.getElementById("absen-pulang-btn");
+            var absenPulangText = document.getElementById("absen-pulang-text");
+    
+            console.log("Waktu saat ini:", currentHour, ":", currentMinute); // Debugging: Mengecek waktu saat ini
+    
+            if (absenPulangBtn && absenPulangText) {
+                // Jika waktu belum mencapai jam 14:00
+                if (currentHour < 16 || (currentHour === 16 && currentMinute < 0)) {
+                    absenPulangBtn.style.pointerEvents = 'none'; // Menonaktifkan tombol
+                    absenPulangBtn.style.opacity = '0.5'; // Membuat tombol terlihat lebih redup
+                    absenPulangText.innerHTML = "Terbuka Pada Jam 16:00"; // Mengubah teks
+                }
+            }
+        });
+    </script>
+    
+    
+</body>
+
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+</body>
+
+</html>

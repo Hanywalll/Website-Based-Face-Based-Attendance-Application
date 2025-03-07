@@ -1,0 +1,119 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #121212;
+            color: #ffc107;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+        .form-container {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .form-container legend {
+            color: #ffc107;
+        }
+
+        .form-container .btn {
+            background: transparent;
+            border: 1px solid #ffc107;
+            color: #ffc107;
+            transition: all 0.3s;
+        }
+
+        .form-container .btn:hover {
+            background: #ffc107;
+            color: #121212;
+        }
+
+        a {
+            color: #ffc107;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: #ffc107;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #e0a800; /* Tua sedikit pada hover */
+            /* color: #121212; */
+        }
+
+        #kembali {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-weight: bold;
+            background-color: #2d2b23;
+            color: black;
+            padding: 5px 13px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #kembali:hover {
+            background-color: #a77f07; /* Tua sedikit pada hover */
+        }
+        body {
+            overflow: hidden; /* Menghilangkan scroll horizontal dan vertikal */
+        }
+        a, a:hover{
+      outline: none !important; /* Hilangkan garis biru */
+      text-decoration: none !important; /* Hilangkan underline */
+   
+      }
+
+
+    </style>
+</head>
+<body> 
+    <div class="form-container">
+      <div class="position-fixed" style="top: 10px; left: 10px; z-index: 1000;">
+        <a href="{% url 'logout' %}" class="btn btn-warning text-dark" id="Kembali" style="font-weight: 600;background-color: #ffc107;">
+            <i class="bi bi-box-arrow-in-left" style="font-weight: bold;"></i> Kembali
+        </a>
+    </div>        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Masuk</legend>
+                {{ form|crispy }}
+            </fieldset>
+
+            <div class="form-group">
+                <button class="btn btn-outline-info w-100" type="submit">Masuk</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

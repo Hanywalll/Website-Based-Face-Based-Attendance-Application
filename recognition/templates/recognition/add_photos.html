@@ -1,0 +1,101 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ <!-- Bootstrap Icons -->
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #000; /* Background hitam */
+            color: #fff; /* Teks putih */
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+        form {
+            width: 400px; /* Ukuran tetap form */
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8); /* Warna background transparan */
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        legend {
+            font-size: 1.5rem;
+            color: #ffc107; /* Warna kuning */
+        }
+
+        .btn-submit {
+            background-color: transparent; /* Tanpa background */
+            border: 2px solid #ffc107; /* Border kuning */
+            color: #ffc107; /* Teks kuning */
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #ffc107; /* Background kuning saat hover */
+            color: #000; /* Teks hitam */
+        }
+
+        .position-fixed a {
+            color: #000;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .position-fixed a:hover {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        i {
+            margin-right: 5px;
+        }
+        body {
+            overflow: hidden; /* Menghilangkan scroll horizontal dan vertikal */
+        }
+    </style>
+</head>
+<body>
+    <!-- Logout Button -->
+    <div class="position-fixed" style="top: 10px; left: 10px; z-index: 1000;">
+        <a href="{% url 'dashboard' %}" class="btn btn-warning text-dark" style="font-weight: bold;">
+            <i class="bi bi-box-arrow-in-left"></i> Kembali
+        </a>
+    </div>
+
+    <!-- Form Login -->
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group text-center">
+          <legend class="border-bottom mb-4 text-center text-warning">
+            <i class="bi bi-camera-fill"></i> Tambahkan Foto Wajah
+        </legend>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group text-center">
+            <button class="btn btn-submit btn-block" type="submit">Kirim</button>
+        </div>
+    </form>
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</body>
+</html>

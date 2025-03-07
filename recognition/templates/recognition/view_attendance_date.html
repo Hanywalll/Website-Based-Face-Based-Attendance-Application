@@ -1,0 +1,209 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance Dashboard</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        nav.navbar a.nav-link, 
+        nav.navbar a.navbar-brand {
+            color: #ffc107 !important;
+        }
+
+        /* nav.navbar a.nav-link:hover {
+            text-decoration: underline;
+        } */
+
+        nav.navbar {
+            background-color: #1f1f1f!important;
+            border: none;
+            box-shadow: none;
+        }
+
+        .navbar-nav {
+            margin-left: auto;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 2em;
+        }
+
+        form .form-group {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            margin-top: 3em;
+        }
+
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #1f1f1f;
+            color: #ffffff;
+        }
+
+        .thead-dark th {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+
+        .btn-outline-info {
+            background-color: #ffc107;
+            color: #000;
+            border-color: #ffc107;
+        }
+
+        .btn-outline-info:hover {
+            background-color: #e0a800;
+            color: #000;
+        }
+
+        .card {
+            margin-top: 5em;
+            margin-bottom: 5em;
+            background-color: #1f1f1f;
+            border: 1px solid #343a40;
+        }
+
+        .card-text {
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .alert {
+            margin-top: 1em;
+        }
+        .btn-admin-panel {
+    background-color: #ffc107;
+    color: #000 !important;
+    padding: 4.4px 7px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-admin-panel:hover {
+    background-color: #e0a800;
+    text-decoration: none;
+}
+
+    </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="{% url 'view-attendance-home' %}">Dashboard Kehadiran</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav" style="justify-content: right;">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'view-attendance-employee' %}">
+                    <i class="bi bi-person"></i> Berdasarkan Pegawai
+                </a>
+            </li>
+      
+            <li class="nav-item active">
+                <a href="{% url 'dashboard' %}" class="nav-link btn-kembali">
+                    <i class="bi bi-box-arrow-in-left"></i> Kembali
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Select Date</legend>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info btn-block" type="submit" value="Create">Submit</button>
+        </div>
+    </form>
+
+    {% if qs %}
+    <table class="table table-dark table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Employee</th>
+                <th scope="col">Present</th>
+                <th scope="col">Time in</th>
+                <th scope="col">Status</th>
+                <th scope="col">Time out</th>
+                <th scope="col">Status</th>
+                <th scope="col">Hours</th>
+                
+
+
+                <!-- <th scope="col">Break Hours</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in qs %}
+            <tr>
+                <td>{{ item.date }}</td>
+                <td>{{ item.user.username }}</td>
+                <td>{% if item.present %}P{% else %}A{% endif %}</td>
+                <td>{{ item.time_in|default:"-" }}</td>
+                <td>{{ item.status_in }}</td> <!-- Untuk status masuk -->
+                <td>{{ item.time_out|default:"-" }}</td>
+                <td>{{ item.status_out }}</td> <!-- Untuk status keluar -->
+                <td>{{ item.hours }}</td>
+                
+
+                <!-- <td>{{ item.break_hours }}</td> -->
+            </tr>
+            {% endfor %}
+            {% if error_message %}
+<div class="alert alert-warning">
+    {{ error_message }}
+</div>
+{% endif %}
+
+        </tbody>
+    </table>
+
+    <div class="card">
+        <img class="card-img-top" src="{% static 'recognition/img/attendance_graphs/hours_vs_employee/1.png' %}" alt="Card image cap">
+        <div class="card-body">
+            <p class="card-text">Jumlah Jam Kerja Disetiap Harinya.</p>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+<!-- Optional JavaScript -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

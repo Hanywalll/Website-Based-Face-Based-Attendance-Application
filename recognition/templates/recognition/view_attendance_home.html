@@ -1,0 +1,196 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <!-- Bootstrap Icons -->
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #000000;
+            color: white;
+        }
+
+        .navbar {
+            background-color: #1f1f1f;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a.navbar-brand, .navbar a.nav-link {
+            color: #ffc107 !important;
+        }
+
+        .btn-admin {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ffc107;
+            color: #212529;
+            border: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            padding: 0.5em 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-admin:hover {
+            background-color: #e5af0b;
+            color: #212529;
+        }
+
+        .btn-admin i {
+            margin-right: 5px;
+        }
+
+        .card-stat {
+            color: white;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .card-stat.total {
+            background-color: #ffc107;
+            color: #212529;
+        }
+
+        .card-stat.present {
+            background-color: #80335b;
+        }
+        body {
+            background-color: #000000;
+            color: white;
+        }
+
+        .navbar {
+            background-color: #1f1f1f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .navbar a.navbar-brand, .navbar a.nav-link {
+            color: #ffc107 !important;
+        }
+
+        /* .btn-kembali {
+            background-color: #ffc107;
+            color: #212529;
+            border: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            padding: 0.3em 0.3em;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        } */
+
+        /* .btn-kembali:hover {
+            background-color: #c3950b;
+            color: #212529;
+            text-decoration: none;
+        } */
+
+        .btn-kembali i {
+            margin-right: 5px;
+            margin-top: 3px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+         <!-- Navbar -->
+         <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="{% url 'view-attendance-home' %}">Dashboard Kehadiran</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav" style="justify-content: right;">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'view-attendance-employee' %}">
+                            <i class="bi bi-person"></i> Berdasarkan Pegawai
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'view-attendance-date' %}">
+                            <i class="bi bi-calendar"></i> Berdasarkan Tanggal
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="{% url 'dashboard' %}" class="nav-link btn-kembali">
+                            <i class="bi bi-box-arrow-in-left"></i> Kembali
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+    <!-- Back to Admin Panel Button -->
+    <!-- <a href="{% url 'dashboard' %}" class="btn btn-admin">
+        <i class="bi bi-box-arrow-in-left"></i> Kembali
+    </a> -->
+
+    <!-- Today's Statistics -->
+    <div class="container mt-4">
+        <h2 class="text-center">Today's Statistics</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card card-stat total">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>Total Number Of Employees</b></h5>
+                        <p class="card-text" style="font-size: 28px;"><b>{{ total_num_of_emp }}</b></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-stat present">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>Employees Present Today</b></h5>
+                        <p class="card-text" style="font-size: 28px;"><b>{{ emp_present_today }}</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Attendance Graphs -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <h2>Last Week</h2>
+                <div class="card">
+                    <img class="card-img-top" src="{% static 'recognition/img/attendance_graphs/last_week/1.png' %}" alt="Last Week Graph">
+                    <div class="card-body">
+                        <p class="card-text text-center">Number of employees present each day</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <h2>This Week</h2>
+                <div class="card">
+                    <img class="card-img-top" src="{% static 'recognition/img/attendance_graphs/this_week/1.png' %}" alt="This Week Graph">
+                    <div class="card-body">
+                        <p class="card-text text-center">Number of employees present each day</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkv3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

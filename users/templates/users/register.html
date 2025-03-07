@@ -1,0 +1,123 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .back-home {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            color: #000000;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-decoration: none;
+            background-color: #ffc107;
+        }
+
+        .back-home:hover {
+            color: #e0a800;
+            text-decoration: none;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+        }
+
+        .card .btn {
+            color: #ffc107;
+            border: 1px solid #ffc107;
+        }
+
+        .card .btn:hover {
+            background: #ffc107;
+            color: #000;
+        }
+
+        .form-group button {
+            width: 100%;
+        }
+
+        .icon {
+            color: #ffc107;
+            font-size: 2rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 20px;
+            }
+
+            .card {
+                margin: 20px;
+                padding: 1.5rem;
+            }
+        }
+        body {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- Back Button -->
+
+
+    <div class="position-fixed" style="top: 10px; left: 10px; z-index: 1000;">
+        <a href="{% url 'dashboard' %}" class="btn btn-warning text-dark" style="font-weight: bold;">
+            <i class="bi bi-box-arrow-in-left"></i> Kembali
+        </a>
+    </div>
+
+    <!-- Main Card -->
+    <div class="card col-lg-4 col-md-6 col-sm-12 mx-auto">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4 text-center text-warning">
+                    <i class="bi bi-person-plus-fill"></i> Daftarkan Pegawai Baru
+                </legend>
+                {{ form|crispy }}
+            </fieldset>
+
+            <div class="form-group">
+                <button class="btn btn-outline-warning" type="submit">Daftar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9QYtvKtv3Rn7W3mgPxhU9/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

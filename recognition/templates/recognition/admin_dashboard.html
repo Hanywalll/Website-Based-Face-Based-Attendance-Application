@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+      
+      body{
+          background: #000; /* Warna hitam untuk background */
+          color: #fff;
+          font-family: 'Arial', sans-serif;
+          text-decoration: none; /* Hapus garis bawah */
+      }
+  
+      .container {
+          margin-top: 3em;
+          padding: 2em;
+          border-radius: 10px;
+          background: rgba(0, 0, 0, 0.85);
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+      }
+  
+      .menu-card {
+          background: rgba(255, 255, 255, 0.1);
+          border: none;
+          border-radius: 10px;
+          padding: 1.5em;
+          min-height: 200px; /* Tinggi minimum */
+          max-height: 200px; /* Tinggi maksimum */
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          text-align: center;
+          color: #fff;
+          text-decoration: none; /* Hapus garis bawah */
+      }
+  
+      .menu-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.3);
+          text-decoration: none; /* Hapus garis bawah */
+      }
+  
+      .menu-icon {
+          font-size: 4rem;
+          color: #ffc107;
+          text-decoration: none; /* Hapus garis bawah */
+      }
+  
+      h1 {
+          text-align: center;
+          text-transform: uppercase;
+          margin-bottom: 2em;
+          text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      }
+  
+      h4 {
+          margin-top: 1em;
+          font-size: 1.2em;
+          text-decoration: none; /* Hapus garis bawah */
+      }
+  
+      a {
+          text-decoration: none; /* Hapus garis bawah dari semua link */
+      }
+  
+      @media (max-width: 768px) {
+          .menu-card {
+              padding: 1em;
+          }
+  
+          .menu-icon {
+              font-size: 3rem;
+          }
+      }
+      a, a:focus, a:active, a:hover, a:visited {
+      outline: none !important; /* Hilangkan garis biru */
+      text-decoration: none !important; /* Hilangkan underline */
+      color: inherit; /* Pastikan warna sama */
+      }
+      body {
+            overflow: hidden; /* Menghilangkan scroll horizontal dan vertikal */
+        }
+
+  </style>
+  
+</head>
+<body>
+  <div class="container">
+      <!-- Logout Button -->
+      <div class="position-fixed" style="top: 10px; left: 10px; z-index: 1000;">
+          <a href="{% url 'logout' %}" class="btn btn-warning text-dark">
+              <i class="fa fa-sign-out-alt"></i> Keluar
+          </a>
+      </div>
+
+      <div class="col-sm-12 mb-4">
+          <h1>Selamat Datang, Admin.</h1>
+      </div>
+
+      <div class="row">
+          <div class="col-md-3">
+              <a href="{% url 'register' %}">
+                  <div class="menu-card">
+                      <i class="fa fa-user-plus menu-icon"></i>
+                      <h4>Daftarkan Guru & Karyawan Baru</h4>
+                  </div>
+              </a>
+          </div>
+          <div class="col-md-3">
+              <a href="{% url 'add-photos' %}">
+                  <div class="menu-card">
+                      <i class="fa fa-camera menu-icon"></i>
+                      <h4>Tambahkan Foto</h4>
+                  </div>
+              </a>
+          </div>
+          <div class="col-md-3">
+              <a href="{% url 'train' %}">
+                  <div class="menu-card">
+                      <i class="fa fa-cogs menu-icon"></i>
+                      <h4>Melatih Foto</h4>
+                  </div>
+              </a>
+          </div>
+          <div class="col-md-3">
+              <a href="{% url 'view-attendance-home' %}">
+                  <div class="menu-card">
+                      <i class="fa fa-chart-line menu-icon"></i>
+                      <h4>Laporan Kehadiran</h4>
+                  </div>
+              </a>
+          </div>
+      </div>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>

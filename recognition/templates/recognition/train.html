@@ -1,0 +1,66 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+
+    <style>
+        body {
+            background-color: #000;
+            color: #ffc107;
+            font-family: Arial, sans-serif;
+        }
+        .container-box {
+            background-color: #333;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        .btn-custom {
+            background-color: #ffc107;
+            color: #000;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .btn-custom:hover {
+            background-color: #d4a106;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container text-center mt-4">
+    <a href="{% url 'dashboard' %}" class="btn btn-custom">Kembali</a>
+</div>
+
+<div class="container-box col-lg-6">
+    <h1>Training Visualization</h1>
+    <img src="{% static 'recognition/img/training_visualisation.png' %}" class="img-fluid"/>
+</div>
+
+<div class="container text-center">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

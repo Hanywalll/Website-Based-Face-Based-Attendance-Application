@@ -1,0 +1,48 @@
+{
+  "folders": [
+	{
+		"name": "netflix.html",
+		"path": "C:/Users/DELL/Desktop/netflix.html"
+	},
+	{
+		"name": "Attendance-System-Using-Face-Recognition",
+		"path": "../CODING/Attendance-System-Using-Face-Recognition"
+	},
+	{
+		"name": "apk_face",
+		"path": "../CODING/apk_face"
+	},
+	{
+		"name": "Absensi wajah berbasis web",
+		"path": "../CODING/Absensi wajah berbasis web"
+	},
+	{
+		"name": "absenguru",
+		"path": "C:/xampp/htdocs/absenguru"
+	},
+	{
+		"name": "absengurugpt",
+		"path": "C:/xampp/htdocs/absengurugpt"
+	},
+	{
+		"name": "attandance",
+		"path": "../../Classroom-Attendance-System-Utilizing-Viola-Jones-for-Face-Detection-and-LBPH-for-Face-Recognition-master/attandance"
+	},
+	{
+		"name": "absenviola",
+		"path": "../../absenviola"
+	},
+	{
+		"name": "faceapp",
+		"path": "../faceapp"
+	},
+	{
+		"name": "absensiwajah",
+		"path": "."
+	},
+	{
+		"path": "../absensmpnbandar"
+	}
+],
+  "settings": {}
+}
